@@ -22,4 +22,7 @@ public class TopicoService {
 		return repository.findByCursoNome(nomeCurso);
 	}
 	
+	public Topico salvarTopico(Topico topico) {
+		return repository.save(topico);
+	}
 }
