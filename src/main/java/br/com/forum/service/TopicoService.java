@@ -25,4 +25,13 @@ public class TopicoService {
 	public Topico salvarTopico(Topico topico) {
 		return repository.save(topico);
 	}
+	
+	public Topico atualizarTopico(Topico topico) {
+		return repository.saveAndFlush(topico);
+	}
+	
+	public void deletarTopico(Long id) {
+		repository.deleteById(id);
+	}
+	
 }
