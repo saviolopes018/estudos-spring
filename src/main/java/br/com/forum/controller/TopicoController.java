@@ -2,6 +2,8 @@ package br.com.forum.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class TopicoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Topico> salvarTopico(@RequestBody Topico topico ) {
+	public ResponseEntity<Topico> salvarTopico(@RequestBody @Valid Topico topico ) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.salvarTopico(topico));
 	}
 	
