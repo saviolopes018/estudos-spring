@@ -18,4 +18,8 @@ public class TopicoService {
 		return repository.findAll();
 	}
 	
+	public List<Topico> listTopicosFilter(String nomeCurso){
+		return repository.findByCursoNome(nomeCurso);
+	}
+	
 }

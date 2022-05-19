@@ -22,4 +22,9 @@ public class TopicoController {
 		return TopicoDTO.toEntity(service.listTopicos());
 	}
 	
+	@GetMapping("/list/filtro")
+	public List<TopicoDTO> listTopicos(String nomeCurso) {
+		return TopicoDTO.toEntity(service.listTopicosFilter(nomeCurso));
+	}
+	
 }
