@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,13 +31,13 @@ public class TopicoController {
 	private TopicoService service;
 
 	@GetMapping("/list")
-	public List<TopicoDTO> listTopicos() {
-		return TopicoDTO.toEntity(service.listTopicos());
+	public Page<TopicoDTO> listTopicos(@RequestParam int page, @RequestParam int qtd) {
+		return TopicoDTO.toDtoPage(service.listTopicos(page, qtd));
 	}
 	
 	@GetMapping("/list/filtro")
 	public List<TopicoDTO> listTopicos(String nomeCurso) {
-		return TopicoDTO.toEntity(service.listTopicosFilter(nomeCurso));
+		return TopicoDTO.toDtoList(service.listTopicosFilter(nomeCurso));
 	}
 	
 	@PostMapping

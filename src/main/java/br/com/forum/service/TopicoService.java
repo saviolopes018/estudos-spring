@@ -3,6 +3,9 @@ package br.com.forum.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.forum.domain.Topico;
@@ -14,8 +17,11 @@ public class TopicoService {
 	@Autowired
 	private TopicoRepository repository;
 	
-	public List<Topico> listTopicos(){
-		return repository.findAll();
+	public Page<Topico> listTopicos(int page, int qtd){
+		
+		Pageable pagination = PageRequest.of(page, qtd);
+		
+		return repository.findAll(pagination);
 	}
 	
 	public List<Topico> listTopicosFilter(String nomeCurso){
