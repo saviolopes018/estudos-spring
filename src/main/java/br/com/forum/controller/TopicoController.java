@@ -6,6 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,8 +33,8 @@ public class TopicoController {
 	private TopicoService service;
 
 	@GetMapping("/list")
-	public Page<TopicoDTO> listTopicos(@RequestParam int page, @RequestParam int qtd) {
-		return TopicoDTO.toDtoPage(service.listTopicos(page, qtd));
+	public Page<TopicoDTO> listTopicos(@PageableDefault(sort = "id", direction = Direction.ASC) Pageable pagination) {
+		return TopicoDTO.toDtoPage(service.listTopicos(pagination));
 	}
 	
 	@GetMapping("/list/filtro")

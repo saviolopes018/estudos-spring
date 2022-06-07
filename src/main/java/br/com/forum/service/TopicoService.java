@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +16,7 @@ public class TopicoService {
 	@Autowired
 	private TopicoRepository repository;
 	
-	public Page<Topico> listTopicos(int page, int qtd){
-		
-		Pageable pagination = PageRequest.of(page, qtd);
+	public Page<Topico> listTopicos(Pageable pagination){
 		
 		return repository.findAll(pagination);
 	}
