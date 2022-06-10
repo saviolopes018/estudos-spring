@@ -24,13 +24,13 @@ public class AuthController {
 	private TokenService tokenService;
 
 	@PostMapping
-	public ResponseEntity<?> autenticar(@RequestBody @Valid Login form){
+	public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid Login form){
 		UsernamePasswordAuthenticationToken dadosLogin = form.toAuth();
 		
 		try {
 			Authentication authentication = authManager.authenticate(dadosLogin);
 			String token = tokenService.gerarToken(authentication);
-			return ResponseEntity.ok().build();
+			return ResponseEntity.ok(new TokenDto(token, "Bearer"));
 		}catch(AuthenticationException e) {
 			return ResponseEntity.badRequest().build();
 		}
