@@ -1,7 +1,6 @@
 package br.com.forum.config.security;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -37,8 +36,6 @@ public class AuthFilter extends OncePerRequestFilter{
 		if(valido) {
 			autenticarUsuario(token);
 		}
-		
-		System.out.println(valido);
 		
 		filterChain.doFilter(request, response);
 		
