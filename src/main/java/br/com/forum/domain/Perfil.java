@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -15,7 +16,7 @@ public class Perfil implements GrantedAuthority{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nomePerfil;
+	private String nome;
 	
 	public Long getId() {
 		return id;
@@ -24,15 +25,15 @@ public class Perfil implements GrantedAuthority{
 		this.id = id;
 	}
 	public String getNomePerfil() {
-		return nomePerfil;
+		return nome;
 	}
 	public void setNomePerfil(String nomePerfil) {
-		this.nomePerfil = nomePerfil;
+		this.nome = nomePerfil;
 	}
 	
 	@Override
 	public String getAuthority() {
-		return this.nomePerfil;
+		return this.nome;
 	}
 	
 }

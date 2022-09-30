@@ -37,6 +37,11 @@ public class TopicoController {
 		return TopicoDTO.toDtoPage(service.listTopicos(pagination));
 	}
 	
+	@GetMapping
+	public List<Topico> listAllTopicos() {
+		return service.listAllTopicos();
+	}
+	
 	@GetMapping("/list/filtro")
 	public List<TopicoDTO> listTopicos(String nomeCurso) {
 		return TopicoDTO.toDtoList(service.listTopicosFilter(nomeCurso));

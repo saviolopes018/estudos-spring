@@ -21,6 +21,11 @@ public class TopicoService {
 		return repository.findAll(pagination);
 	}
 	
+	public List<Topico> listAllTopicos(){
+		
+		return repository.findAll();
+	}
+	
 	public List<Topico> listTopicosFilter(String nomeCurso){
 		return repository.findByCursoNome(nomeCurso);
 	}
